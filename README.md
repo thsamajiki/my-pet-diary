@@ -6,5 +6,5 @@
 
 # Function
 - login_signup - 로그인, 회원가입
-- bulletin - 자유게시판
+- freeboard - 자유게시판
 - photo_zone - 마이펫 자랑하기, photo upload
