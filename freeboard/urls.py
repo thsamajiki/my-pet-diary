@@ -4,7 +4,9 @@ from . import views
 app_name = 'freeboard'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:post_id>/', views.detail, name='detail'),
-    path('post/create/', views.post_create, name='post_create'),
+    path('', views.board, name='board'),
+    path('<int:post_id>/', views.post_detail, name='post_detail'),
+    path('post/write/', views.write, name='write'),
+    path('<int:feed_id>/modify/', views.modify, name='modify'),
+    path('<int:feed_id>/delete/', views.delete, name='delete'),
 ]

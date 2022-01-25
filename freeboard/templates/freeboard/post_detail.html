@@ -4,7 +4,14 @@
     href="{% static 'bootstrap.min.css' %}">
 
 <div class="container my-5">
-    <h2 class="border-bottom py-2">{{ post.subject }}</h2>
+    <div class="container-title">
+        <h2 class="border-bottom py-2">{{ post.subject }}</h2>
+        <a href="{% url 'freeboard:delete' %}/post/detail{{ post.id }}:delete/" class="btn btn-secondary" style="float: right; margin-bottom: 10px">
+            <button>삭제</button>
+        <a href="{% url 'freeboard:modify' %}/post/detail{{ post.id }}:modify/" class="btn btn-secondary" style="float: right; margin-bottom: 10px">
+            <button>수정</button>
+        </a>
+    </div>
     <div class="card my-3">
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">
@@ -12,7 +19,7 @@
             </div>
         <div class="d-flex justify-content-end">
             <div class="badge badge-light p-2">
-                {{ post.pub_date }}
+                {{ post.write_date }}
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@
 <div class="container my-5">
     <div class="container-title">
         <h5 class="text-center">📌자유게시판</h5>
-        <a href="{% url 'freeboard:post_create' %}" class="btn btn-secondary" style="float: right; margin-bottom: 10px">
+        <a href="{% url 'freeboard:write' %}" class="btn btn-secondary" style="float: right; margin-bottom: 10px">
             🖋 글쓰기
         </a>
     </div>
@@ -25,14 +25,14 @@
             {% if post_list %}
             {% for post in post_list %}
             <tr>
-                <td>{{ forloop.counter }}</td>
+                <td>{{ post.id }}</td>
                 <td>
-                    <a href="{% url 'freeboard:detail' post.id %}">
+                    <a href="{% url 'freeboard:post_detail' post.id %}">
                         {{ post.subject }}
                     </a>
                 </td>
-                <td>{{ post.writer }}</td>
-                <td>{{ post.pub_date }}</td>
+                <td>{{ post.user.name }}</td>
+                <td>{{ post.write_date }}</td>
                 <td></td>
             </tr>
             {% endfor %}
@@ -43,6 +43,34 @@
             {% endif %}
         </tbody>
     </table>
+
+    <hr>
+    <div class="pagination">
+        {% if boards.has_previous%}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ boards.previous_page_number}}">◁</a>
+        </li>
+        {% else %}
+        {% comment %} <li class="page-item disable">
+            <a class="page-link" href="">◁</a>
+        </li> {% endcomment %}
+        {% endif %}
+
+        <li class="page-item">
+            <a class="page-link" href="">{{boards.number}} / {{boards.paginator.num_pages}}</a>
+        </li>
+        
+        {% if boards.has_next%}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ boards.next_page_number}}">▷</a>
+        </li>
+        {% else %}
+        {% comment %} <li class="page-item disable">
+            <a class="page-link" href="">▷</a>
+        </li>    {% endcomment %}
+        {% endif %}
+
+    </div>
 
            
 </div>
